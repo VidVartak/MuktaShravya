@@ -1,7 +1,6 @@
-//import { books } from "../../server/routes/api/books";
 import axios from "axios";
 
-const url = 'api/books/';
+const url = '/api/books/';
 
 class BookService{
     //Get books
@@ -14,6 +13,23 @@ class BookService{
             createdAt: new Date(book.createdAt)
             }))
         } catch (err) {
+            return err
+        }
+    }
+
+        //Get books
+    static async getBook(bookId) {
+        console.log("in service.getBook, id:"+bookId+", url:"+url+bookId);
+        const res = await axios.get(url+bookId)
+        console.log("in service, after awaiting get")
+        try {
+            const data = res.data
+            return data.map(book => ({
+            ...book,
+            createdAt: new Date(book.createdAt)
+            }))
+        } catch (err) {
+            console.log("in service.getbook, error"+err)
             return err
         }
     }

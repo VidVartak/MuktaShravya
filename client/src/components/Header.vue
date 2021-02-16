@@ -30,23 +30,7 @@
         ]
       }
     }
-/*            const {t, locale} = useI18n();
-            return{
-                lang: this.$store.state.lang,
-                useI18n: {t, locale}
-            }
-        },
-        methods:{
-          changeLanguage(event) {
-            i18n.locale = event.value;
-          }
-        },
-        computed: {
-          language(){
-            return this.$store.state.lang;
-          }
-        }
-  */  }
+}
 
 </script>
 <style scoped>

@@ -8,10 +8,9 @@
           v-bind:index="index"
           v-bind:key="book._id"
           >
-            <!--a v-if="language==book.Language" href="book.html">{{book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.VernacularHeader.Reader}})</a>
-            <a v-else href="book.html">{{book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.EnglishHeader.Reader}})</a-->
-            <router-link v-if="language==book.Language" to="/bookDetail">{{book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.VernacularHeader.Reader}})</router-link>
-            <router-link v-else to="/bookDetail">{{book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.EnglishHeader.Reader}})</router-link>
+            <router-link v-if="language==book.Language" :to="{name: 'BookDetail', params: {id:book._id}}">{{book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.VernacularHeader.Reader}})</router-link>
+            <router-link v-else :to="{name: 'BookDetail', params: {id:book._id}}">{{book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.EnglishHeader.Reader}})</router-link>
+
           </li>
         </ul>
       </div>
@@ -19,7 +18,6 @@
 
 <script>
 import BookService from '../BookService';
-//import {useI18n} from "vue-i18n";
 
 export default {
   name: 'LeftNav',
@@ -29,15 +27,23 @@ export default {
       title: '',
       vernacularTitle:'',
       reader: '',
-      vernacularReader:''
+      vernacularReader:'',
+      archiveName:''
     }
   },
   async created(){
     try{
+        console.log("in LeftNav, calling book service for id 6027ecbe2b855817ee9444c2")
       this.books=await BookService.getBooks();
 
     } catch(err){
       this.error = err.message;
+    }
+  },
+  props: {
+    id:{
+      type:String,
+      default: ""
     }
   },
   computed: {
@@ -45,16 +51,7 @@ export default {
       return this.$i18n.locale;
     }
   }
-/*  setup() {
-    const {t, locale} = useI18n();
-    return {t, locale};
-  },
-  computed: {
-    language(){
-      return this.$store.state.lang;
-    }
-  }
-*/}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

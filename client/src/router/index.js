@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/components/BookSearch.vue'
-import Login from '@/components/Login.vue'
-import JoinUs from '@/components/joinUs.vue'
-import About from '@/components/AboutUs.vue'
-import BookDetail from '@/components/BookDetail.vue'
+import Home from '@/views/BookSearch.vue'
+import Login from '@/views/Login.vue'
+import JoinUs from '@/views/joinUs.vue'
+import About from '@/views/AboutUs.vue'
+import BookDetail from '@/views/BookDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -25,9 +25,10 @@ const routes = [
     component: JoinUs
   },
   {
-    path:'/bookDetail',
+    path:'/bookDetail/:id',
     name: 'BookDetail',
-    component: BookDetail
+    component: BookDetail,
+    props: true
   },
   {
     path: '/about',

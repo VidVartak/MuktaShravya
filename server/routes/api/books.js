@@ -11,6 +11,11 @@ router.get('/', async (req, res)=>{ //slash is this route, i.e. /api/books
     res.send(await books.find({}).toArray());
 }); 
 
+router.get('/:id', async (req, res)=>{ //slash is this route, i.e. /api/books
+    const books = await loadBooksCollection();
+    res.send(await books.find({_id:new mongodb.ObjectID(req.params.id)}).toArray());
+}); 
+
 //Add Book
 
 router.post('/', async (req, res) =>{

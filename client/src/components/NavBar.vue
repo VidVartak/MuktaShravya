@@ -1,10 +1,10 @@
 <template>
     <nav>
       <ul>
-        <li><router-link to="/login"><span v-if="loginUser"> {{$t('loggedinVolunteer')}}: {{ loginUser }}</span> <span v-else>{{$t('volunteer')}} {{$t('login')}}</span> </router-link></li>
-        <li><router-link to="/joinUs">{{$t('volunteerWithUs.header')}} </router-link></li>
-        <li><router-link to="/about">{{$t('aboutUs')}} </router-link></li>
-        <li><router-link to="/">{{$t('home')}}</router-link></li>
+        <li><router-link :to="{name: 'Login'}"><span v-if="loginUser"> {{$t('loggedinVolunteer')}}: {{ loginUser }}</span> <span v-else>{{$t('volunteer')}} {{$t('login')}}</span> </router-link></li>
+        <li><router-link :to="{name: 'JoinUs'}">{{$t('volunteerWithUs.header')}} </router-link></li>
+        <li><router-link :to="{name: 'About'}">{{$t('aboutUs')}} </router-link></li>
+        <li><router-link :to="{name: 'Home'}">{{$t('home')}}</router-link></li>
 
 <!--          <li><router-link to="/login"><span v-if="loginUser"> {{t('loggedinVolunteer', {}, {locale: language})}}: {{ loginUser }}</span> <span v-else>{{t('volunteerLogin', {}, {locale: language})}}</span> </router-link></li>
         <li><a href="joinUs.html">{{t('volunteerWithUs', {}, {locale: language})}}</a></li>

@@ -6,6 +6,10 @@
       "BooksList":"Some Recent Audio Books",
       "ReadBy":"read by"
     },
+    "bookDetail":{
+      "Header": "Book: ",
+      "ReadBy":"Read by"
+    },
     "MuktaShravya":"Mukta Shrāvya",
     "headerTagLine" : "Out of Copyright books read by volunteers",
     "home": "Home",

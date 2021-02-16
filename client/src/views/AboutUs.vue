@@ -3,7 +3,6 @@
         <h1>{{$t('aboutHeader')}}</h1>
         <p>{{$t('aboutText')}}</p>
     </div>
-
 </template>
 <script>
 </script>
