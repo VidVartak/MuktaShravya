@@ -11,11 +11,6 @@
       </div>
       <h1><span class="highlight"> {{$t('MuktaShravya')}} : </span> Indian Audio Books</h1>
       <h2>{{$t('headerTagLine')}}</h2>
-
-  <!--      <a href="#" @click="toggleLanguage">{{t('langChange', {}, {locale: language})}}</a>
-      <h1><span class="highlight"> {{t('boltiPustake', {}, {locale: language})}} : </span> Marathi Audio Books</h1>
-      <h2>{{t('headerTagLine', {}, {locale: language})}}</h2>
--->    </header>
 </template>
 
 <script>
