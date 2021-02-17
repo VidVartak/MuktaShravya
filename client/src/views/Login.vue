@@ -1,9 +1,16 @@
 <template>
   <div id="contentWrapper">
     <h1>{{$t('volunteer')}} {{$t('login')}}</h1>
-    <button @click="handleClickGetAuth" :disabled="loginUser">get auth code</button>
-    <button @click="handleClickSignIn" v-if="!loginUser" >{{$t('login')}}</button>
-    <button @click="handleClickSignOut" v-if="loginUser" >{{$t('logout')}}</button>
+    <div id="loginMenu" v-if="loginUser">
+      <button @click="handleClickSignOut" >{{$t('logout')}}</button>
+      <ul>
+        <li><router-link :to="{name: 'CreateBook'}">{{$t('createBook.Header')}} </router-link></li>
+      </ul>
+
+    </div>
+    <div id="nonLoginMenu" v-else>
+      <button @click="handleClickSignIn" >{{$t('login')}}</button>
+    </div>
   </div>
 </template>
 

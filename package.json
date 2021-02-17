@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VidVartak/mukta-shravya.git"
+    "url": "git+https://github.com/VidVartak/MuktaShravya.git"
   },
   "keywords": [
     "Indian",
@@ -22,9 +22,9 @@
   "author": "Vid Vartak",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VidVartak/mukta-shravya/issues"
+    "url": "https://github.com/VidVartak/MuktaShravya/issues"
   },
-  "homepage": "https://github.com/VidVartak/mukta-shravya#readme",
+  "homepage": "https://github.com/VidVartak/MuktaShravya#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

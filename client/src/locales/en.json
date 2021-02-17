@@ -8,7 +8,12 @@
     },
     "bookDetail":{
       "Header": "Book: ",
-      "ReadBy":"Read by"
+      "ReadBy":"Read by",
+      "Author":"Author"
+    },
+    "createBook":{
+      "Header": "Create a new book",
+      "SubHeader":"Here you can create a new book by entering all the relevant information below"
     },
     "MuktaShravya":"Mukta Shrāvya",
     "headerTagLine" : "Out of Copyright books read by volunteers",

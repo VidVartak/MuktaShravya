@@ -2,15 +2,16 @@
       <div id="contentWrapper" :key="$route.params.id" >
         <div v-if="language==getBookLanguage()" >
           <h1> {{getVernacularTitle()}}</h1>
-          <h2 > {{$t('bookDetail.ReadBy')}} {{getVernacularReader()}}</h2>
+          <h2 >{{$t('bookDetail.Author')}}: {{getVernacularAuthor()}}, {{$t('bookDetail.ReadBy')}}: {{getVernacularReader()}}</h2>
+          <p>{{getVernacularDesc()}}</p>
         </div>
         <div v-else>
           <h1> {{getEnglishTitle()}}</h1>
-          <h2 > {{$t('bookDetail.ReadBy')}} {{getEnglishReader()}}</h2>
+          <h2 >{{$t('bookDetail.Author')}}: {{getEnglishAuthor()}}, {{$t('bookDetail.ReadBy')}}: {{getEnglishReader()}}</h2>
+          <p>{{getEnglishDesc()}}</p>
         </div>
         <div style="visibility: visible;">
-          <p>{{$t('aboutText')}}</p>
-          <iframe :src="`http://archive.org/embed/${this.books[0].ArchiveName}?playlist=y`" width="300" height="300" frameborder="0" allowFullScreen></iframe>
+          <iframe :src="`http://archive.org/embed/${this.books[0].book.ArchiveName}?playlist=y`" width="300" height="300" frameborder="0" allowFullScreen></iframe>
         </div>
       </div>
 </template>
@@ -46,27 +47,39 @@
     },
     methods: {
       getArchiveName(){
-        return this.books[0].archiveName;
+        return this.books[0].book.archiveName;
       },
       getEnglishTitle(){
-        return this.books[0].EnglishHeader.Title;
+        return this.books[0].book.EnglishHeader.Title;
       },
       getVernacularTitle(){
-        return this.books[0].VernacularHeader.Title;
+        return this.books[0].book.VernacularHeader.Title;
       },
       getEnglishReader(){
-        return this.books[0].EnglishHeader.Reader;
+        return this.books[0].book.EnglishHeader.Reader;
       },
       getVernacularReader(){
-        return this.books[0].VernacularHeader.Reader;
+        return this.books[0].book.VernacularHeader.Reader;
+      },
+      getEnglishAuthor(){
+        return this.books[0].book.EnglishHeader.Author;
+      },
+      getVernacularAuthor(){
+        return this.books[0].book.VernacularHeader.Author;
+      },
+      getEnglishDesc(){
+        return this.books[0].book.EnglishHeader.Description;
+      },
+      getVernacularDesc(){
+        return this.books[0].book.VernacularHeader.Description;
       },
       getBookLanguage(){
-        return this.books[0].Language;
+        return this.books[0].book.Language;
       },
       async update(){
       try{
           this.books=await BookService.getBook(this.$route.params.id);
-          this.archiveName=this.books[0].archiveName;
+          this.archiveName=this.books[0].book.archiveName;
         } catch(err){
           this.error = err.message;
         }

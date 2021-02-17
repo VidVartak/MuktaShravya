@@ -8,7 +8,12 @@
     },
     "bookDetail":{
       "Header": "पुस्तक: ",
-      "ReadBy":"वाचक"
+      "ReadBy":"वाचक",
+      "Author":"लेखन"
+    },
+    "createBook":{
+      "Header": "नयी किताब बनाइये",
+      "SubHeader":"नयी किताब के बारेमे जानकारी यहाँ भरें"
     },
     "MuktaShravya":"मुक्त श्राव्य",
     "headerTagLine" : "स्वयंसवियोंने पढ़ी हुई कॉपीराईट मुक्त किताबें ",

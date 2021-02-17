@@ -35,10 +35,9 @@ class BookService{
     }
 
     //Create Book
-    static insertBook(title, reader){
-        return axios.book(url,{
-            title, reader
-        })
+    static insertBook(newBook){
+        console.log("book service insertbook called")
+        return axios.post(url, newBook)
 
     }
 

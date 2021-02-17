@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import JoinUs from '@/views/joinUs.vue'
 import About from '@/views/AboutUs.vue'
 import BookDetail from '@/views/BookDetail.vue'
+import CreateBook from '@/views/CreateBook.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     //import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/createBook',
+    name: 'CreateBook',
+    component: CreateBook
   }
 ]
 

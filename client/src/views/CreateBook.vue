@@ -1,0 +1,103 @@
+<template>
+      <div id="contentWrapper" >
+        <div class="createBook" v-if="loginUser">
+          <h1> {{$t('createBook.Header')}} </h1>
+          <h2 > {{$t('createBook.SubHeader')}} </h2>
+          <form class="searchForm" @submit.prevent="createBook">
+            <input type="text" id="BookArchiveName" v-model="Book.ArchiveName" placeholder="Enter Archive Name">
+            <select v-model="Book.Language">
+                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang.short">
+                    {{ lang.long }}
+                </option>
+            </select>
+            <div id="BookEnglishHeader">
+                <input type="text" id="EnglishBookTitle" v-model="Book.EnglishHeader.Title" placeholder="Enter book title in English">
+                <input type="text" id="EnglishBookReader" v-model="Book.EnglishHeader.Reader" placeholder="Enter Reader Name in English">
+                <input type="text" id="EnglishBookAuthor" v-model="Book.EnglishHeader.Author" placeholder="Enter Author Name in English">
+                <input type="text" id="EnglishBookDesc" v-model="Book.EnglishHeader.Description" placeholder="Enter Description in English">
+            </div>
+            <div id="BookVernacularHeader">
+                <input type="text" id="VernacularBookTitle" v-model="Book.VernacularHeader.Title" placeholder="Enter book title in Vernacular">
+                <input type="text" id="VernacularBookReader" v-model="Book.VernacularHeader.Reader" placeholder="Enter Reader Name in Vernacular">
+                <input type="text" id="VernacularBookAuthor" v-model="Book.VernacularHeader.Author" placeholder="Enter Author Name in Vernacular">
+                <input type="text" id="VernacularBookDesc" v-model="Book.VernacularHeader.Description" placeholder="Enter Description in Vernacular">
+            </div>
+            <span class="searchCriteria">
+                <input type="checkbox" id="history" name="history" value="history" v-model="Book.tags">
+                <label for="history">{{$t('history')}}</label>
+            </span>
+            <span class="searchCriteria">
+                <input type="checkbox" id="novel" name="novel" value="novel" v-model="Book.tags">
+                <label for="novel">{{$t('fiction')}}</label>
+            </span>
+            <span class="searchCriteria">
+                <input type="checkbox" id="religious" name="religious" value="religious" v-model="Book.tags">
+                <label for="religious">{{$t('religion')}}</label>
+            </span>
+            <span class="searchCriteria">
+                <input type="checkbox" id="social" name="social" value="social" v-model="Book.tags">
+                <label for="social">{{$t('social')}}</label>
+            </span>
+            <span class="searchCriteria">
+                <input type="checkbox" id="biography" name="biography" value="biography" v-model="Book.tags">
+                <label for="thoughts">{{$t('biography')}}</label>
+            </span>
+
+            <button class="button_1">Submit</button>
+          </form>
+        </div>
+        <div class="notLoggedIn" v-else>
+            <p>You need to be logged in to use this page</p>
+        </div>
+      </div>
+</template>
+
+<script>
+import BookService from '../BookService';
+    export default {
+        name: 'BookComponent',
+        data() {
+            return {
+                Book:{
+                    ArchiveName: "",
+                    Language: "",
+                    CreatedAt: new Date(),
+                    EnglishHeader: {
+                        Title: "",
+                        Reader: "",
+                        Author: "",
+                        Description: ""
+                    },
+                    VernacularHeader: {
+                        Title: "",
+                        Reader: "",
+                        Author: "",
+                        Description: ""
+                    },
+                    tags: []
+                },
+                langs:
+                    [
+                    {short:'en', long:'English'},
+                    {short:'mr', long:'मराठी'},
+                    {short:'hi', long:'हिंदी'}
+                    ]
+            }
+        },
+        computed:  {
+            loginUser(){
+            return this.$store.getters.getUserName;
+            }
+        },
+        methods:{
+            async createBook(){
+                console.log("createBook called")
+                await BookService.insertBook(this.Book);
+                console.log("After creating book")
+            }
+        }
+    }
+</script>
+
+<style scoped>
+</style>

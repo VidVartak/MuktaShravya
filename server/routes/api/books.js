@@ -20,11 +20,14 @@ router.get('/:id', async (req, res)=>{ //slash is this route, i.e. /api/books
 
 router.post('/', async (req, res) =>{
     const books = await loadBooksCollection();
+    console.log("server side post called with body:"+JSON.stringify(req.body))
     await books.insertOne({
-        Title: req.body.title,
-        Reader: req.body.reader,
-        createdAt: new Date()
-    });
+/*        Title: req.body.EnglishHeader.title,
+        Reader: req.body.EnglishHeader.reader,
+        Feeder: "dummy",
+        createdAt: new Date()*/
+        book:req.body
+    }, {raw:true});
     res.status(201).send(); //201 means something was created OK.
 
 })

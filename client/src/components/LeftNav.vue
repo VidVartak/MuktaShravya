@@ -8,8 +8,8 @@
           v-bind:index="index"
           v-bind:key="book._id"
           >
-            <router-link v-if="language==book.Language" :to="{name: 'BookDetail', params: {id:book._id}}">{{book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.VernacularHeader.Reader}})</router-link>
-            <router-link v-else :to="{name: 'BookDetail', params: {id:book._id}}">{{book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.EnglishHeader.Reader}})</router-link>
+            <router-link v-if="language==book.book.Language" :to="{name: 'BookDetail', params: {id:book._id}}">{{book.book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.book.VernacularHeader.Reader}})</router-link>
+            <router-link v-else :to="{name: 'BookDetail', params: {id:book._id}}">{{book.book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.book.EnglishHeader.Reader}})</router-link>
 
           </li>
         </ul>
@@ -33,8 +33,10 @@ export default {
   },
   async created(){
     try{
-        console.log("in LeftNav, calling book service for id 6027ecbe2b855817ee9444c2")
+        console.log("in LeftNav, calling book service")
       this.books=await BookService.getBooks();
+      console.log("after calling book service")
+      console.log("got some books from service:"+this.books.length)
 
     } catch(err){
       this.error = err.message;
