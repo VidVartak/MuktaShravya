@@ -8,24 +8,30 @@ const router = express.Router();
 
 router.get('/', async (req, res)=>{ //slash is this route, i.e. /api/books
     const books = await loadBooksCollection();
-    res.send(await books.find({}).toArray());
+//    res.send(await books.find({}).toArray());
+    res.send(await books.find(req.body).toArray());
 }); 
 
+//Search Books
+router.post('/search/', async (req, res) =>{
+    console.log("in search, body:"+JSON.stringify(req.body))
+    console.log("in search, params:"+JSON.stringify(req.params))
+    console.log("in search, data:"+JSON.stringify(req.data))
+    const books = await loadBooksCollection();
+    res.send(await books.find(req.body).toArray());
+})
+
 router.get('/:id', async (req, res)=>{ //slash is this route, i.e. /api/books
+    console.log("get with id called, id:"+req.params.id)
     const books = await loadBooksCollection();
     res.send(await books.find({_id:new mongodb.ObjectID(req.params.id)}).toArray());
 }); 
 
 //Add Book
 
-router.post('/', async (req, res) =>{
+router.post('/add/', async (req, res) =>{
     const books = await loadBooksCollection();
-    console.log("server side post called with body:"+JSON.stringify(req.body))
     await books.insertOne({
-/*        Title: req.body.EnglishHeader.title,
-        Reader: req.body.EnglishHeader.reader,
-        Feeder: "dummy",
-        createdAt: new Date()*/
         book:req.body
     }, {raw:true});
     res.status(201).send(); //201 means something was created OK.

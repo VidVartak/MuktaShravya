@@ -1,6 +1,6 @@
 <template>
-      <div id="leftNav"  >
-        <h2>{{$t('leftNav.BooksList')}}</h2>
+      <div id="searchResults"  >
+        <h2>{{$t('searchResults.Header1')}} {{books.length}} {{$t('searchResults.Header2')}}</h2>
         <ul>
           <li
           v-for="(book, index) in books"
@@ -17,36 +17,11 @@
 </template>
 
 <script>
-import BookService from '../BookService';
 
 export default {
-  name: 'LeftNav',
-  data() {
-    return {
-      books: [], //This will be filled by the API calls later
-      title: '',
-      vernacularTitle:'',
-      reader: '',
-      vernacularReader:'',
-      archiveName:''
-    }
-  },
-  async created(){
-    try{
-        console.log("in LeftNav, calling book service")
-      this.books=await BookService.getBooks();
-      console.log("after calling book service")
-      console.log("got some books from service:"+this.books.length)
-
-    } catch(err){
-      this.error = err.message;
-    }
-  },
+  name: 'SearchResults',
   props: {
-    id:{
-      type:String,
-      default: ""
-    }
+    books:Array
   },
   computed: {
     language(){
@@ -55,3 +30,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>

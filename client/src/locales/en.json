@@ -15,6 +15,10 @@
       "Header": "Create a new book",
       "SubHeader":"Here you can create a new book by entering all the relevant information below"
     },
+    "searchResults":{
+      "Header1": "Your search found",
+      "Header2": "matching books"
+    },
     "MuktaShravya":"Mukta Shrāvya",
     "headerTagLine" : "Out of Copyright books read by volunteers",
     "home": "Home",
@@ -31,7 +35,7 @@
     "biography" : "Biographical",
     "Search" : "Search",
     "findABook" : "Find a book to listen to",
-    "chooseCriteria" : "Choose one of more criteria",
+    "chooseCriteria" : "Choose one or more categories",
     "getInTouch" : "Get in touch",
     "likeUs" : "Like us on ",
     "aboutHeader": "A few words about Bolti Pustake",

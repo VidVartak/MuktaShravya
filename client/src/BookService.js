@@ -17,11 +17,22 @@ class BookService{
         }
     }
 
-        //Get books
+    //Search books
+    static async searchBooks(searchCriteria) {
+        const res = await axios.post(url+"search/", searchCriteria);
+        try {
+            const data = res.data
+            return data.map(book => ({
+            ...book
+            }))
+        } catch (err) {
+            return err
+        }
+    }
+
+    //Get books
     static async getBook(bookId) {
-        console.log("in service.getBook, id:"+bookId+", url:"+url+bookId);
         const res = await axios.get(url+bookId)
-        console.log("in service, after awaiting get")
         try {
             const data = res.data
             return data.map(book => ({
@@ -29,15 +40,13 @@ class BookService{
             createdAt: new Date(book.createdAt)
             }))
         } catch (err) {
-            console.log("in service.getbook, error"+err)
             return err
         }
     }
 
     //Create Book
     static insertBook(newBook){
-        console.log("book service insertbook called")
-        return axios.post(url, newBook)
+        return axios.post(url+"add/", newBook)
 
     }
 
