@@ -3,10 +3,23 @@
         <div class="createBook" v-if="loginUser">
           <h1> {{$t('createBook.Header')}} </h1>
           <h2 > {{$t('createBook.SubHeader')}} </h2>
+          <!--v-dialog max-width="600px">
+              <v-btn flat slot="activator" class="success">Add new book</v-btn>
+              <v-card>
+                  <v-card-title>
+                      <h2>Add a New Book</h2>
+                  </v-card-title>
+                  <v-card-text>
+            <v-form class="px-3">
+                <v-text-field label="Title"></v-text-field>
+            </v-form>
+            </v-card-text>
+            </v-card>
+          </v-dialog-->
           <form class="searchForm" @submit.prevent="createBook">
             <input type="text" id="BookArchiveName" v-model="Book.ArchiveName" placeholder="Enter Archive Name">
             <select v-model="Book.Language">
-                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang.short">
+                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang.short" >
                     {{ lang.long }}
                 </option>
             </select>
@@ -56,44 +69,46 @@
 import BookService from '../BookService';
     export default {
         name: 'BookComponent',
-        data() {
-            return {
-                Book:{
-                    ArchiveName: "",
-                    Language: "",
-                    CreatedAt: new Date(),
-                    EnglishHeader: {
-                        Title: "",
-                        Reader: "",
-                        Author: "",
-                        Description: ""
-                    },
-                    VernacularHeader: {
-                        Title: "",
-                        Reader: "",
-                        Author: "",
-                        Description: ""
-                    },
-                    tags: []
-                },
-                langs:
-                    [
-                    {short:'en', long:'English'},
-                    {short:'mr', long:'मराठी'},
-                    {short:'hi', long:'हिंदी'}
-                    ]
-            }
+          data() {
+                return {
+                    Book:{
+                        ArchiveName: "",
+                        Language: "",
+                        CreatedAt: new Date(),
+                        EnglishHeader: {
+                            Title: "",
+                            Reader: "",
+                            Author: "",
+                            Description: ""
+                        },
+                        VernacularHeader: {
+                            Title: "",
+                            Reader: "",
+                            Author: "",
+                            Description: ""
+                        },
+                        tags: []
+                    }
+                }
+            },
+        created() {
+            this.Book.Language = this.currLanguage;
         },
         computed:  {
             loginUser(){
+              //return localStorage.getItem("user");
             return this.$store.getters.getUserName;
+            },
+            langs(){
+            return this.$store.getters.getLanguageList;
+            },
+            currLanguage(){
+            return this.$store.getters.getCurrLanguage;
             }
         },
         methods:{
             async createBook(){
-                console.log("createBook called")
                 await BookService.insertBook(this.Book);
-                console.log("After creating book")
             }
         }
     }

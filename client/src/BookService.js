@@ -30,20 +30,6 @@ class BookService{
         }
     }
 
-    //Get books
-    static async getBook(bookId) {
-        const res = await axios.get(url+bookId)
-        try {
-            const data = res.data
-            return data.map(book => ({
-            ...book,
-            createdAt: new Date(book.createdAt)
-            }))
-        } catch (err) {
-            return err
-        }
-    }
-
     //Create Book
     static insertBook(newBook){
         return axios.post(url+"add/", newBook)

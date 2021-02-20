@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', async (req, res)=>{ //slash is this route, i.e. /api/books
     const books = await loadBooksCollection();
 //    res.send(await books.find({}).toArray());
-    res.send(await books.find(req.body).toArray());
+    res.send(await books.find().sort({"book.CreatedAt" : -1}).limit(5).toArray());
 }); 
 
 //Search Books

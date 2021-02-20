@@ -33,10 +33,7 @@ export default {
   },
   async created(){
     try{
-        console.log("in LeftNav, calling book service")
       this.books=await BookService.getBooks();
-      console.log("after calling book service")
-      console.log("got some books from service:"+this.books.length)
 
     } catch(err){
       this.error = err.message;

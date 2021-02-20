@@ -4,14 +4,16 @@
           <h1> {{book.book.VernacularHeader.Title}}</h1>
           <h2 >{{$t('bookDetail.Author')}}: {{book.book.VernacularHeader.Author}}, {{$t('bookDetail.ReadBy')}}: {{book.book.VernacularHeader.Reader}}</h2>
           <p>{{book.book.VernacularHeader.Description}}</p>
+          <p>{{book.book.VernacularHeader.DescriptionSpillOver}}</p>
         </div>
         <div v-else>
           <h1> {{book.book.EnglishHeader.Title}}</h1>
           <h2 >{{$t('bookDetail.Author')}}: {{book.book.EnglishHeader.Author}}, {{$t('bookDetail.ReadBy')}}: {{book.book.EnglishHeader.Reader}}</h2>
           <p>{{book.book.EnglishHeader.Description}}</p>
+          <p>{{book.book.EnglishHeader.DescriptionSpillOver}}</p>
         </div>
         <div style="visibility: visible;">
-          <iframe :src="`http://archive.org/embed/${this.book.book.ArchiveName}?playlist=y`" width="300" height="300" frameborder="0" allowFullScreen></iframe>
+          <iframe :src="`https://archive.org/embed/${this.book.book.ArchiveName}?playlist=y`" width="300" height="300" frameborder="0" allowFullScreen></iframe>
         </div>
       </div>
 </template>

@@ -17,15 +17,11 @@
 <script>
 
     export default{
-    data () {
-      return { langs:
-        [
-          {short:'en', long:'English'},
-          {short:'mr', long:'मराठी'},
-          {short:'hi', long:'हिंदी'}
-        ]
+      computed:  {
+        langs(){
+          return this.$store.getters.getLanguageList;
+        }
       }
-    }
 }
 
 </script>

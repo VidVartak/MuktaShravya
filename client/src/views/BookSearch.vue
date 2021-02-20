@@ -47,6 +47,7 @@ import SearchResults from '@/components/SearchResults.vue';
         },
         computed:  {
             loginUser(){
+             // return localStorage.getItem("user")
             return this.$store.getters.getUserName;
             }
         },

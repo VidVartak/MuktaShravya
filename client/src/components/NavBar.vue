@@ -13,6 +13,7 @@ export default {
   computed:  {
     loginUser(){
       return this.$store.getters.getUserName;
+      //return localStorage.getItem("user");
     }
   }
 }

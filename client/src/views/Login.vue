@@ -10,6 +10,7 @@
     </div>
     <div id="nonLoginMenu" v-else>
       <button @click="handleClickSignIn" >{{$t('login')}}</button>
+      <button @click="handleClickGetAuth" >Get Auth</button>
     </div>
   </div>
 </template>
@@ -43,12 +44,14 @@ export default {
         // On success
         return this.$http.post('http://your-backend-server.com/auth/google', { code: authCode, redirect_uri: 'postmessage' })
       })
-/*      .then(response => {
+      .then(response => {
         // And then
+        console.log("get auth code success. Response:"+JSON.stringify(response))
       })
       .catch(error => {
+        console.log("Error during get Auth:"+JSON.stringify(error))
         // On fail do something
-      })*/
+      })
     },
 
     async handleClickSignIn(){
@@ -60,6 +63,10 @@ export default {
         this.user = googleUser.getBasicProfile().getName();
         this.$store.commit("setLoggedUser", this.user);
         this.isSignIn = true;
+        console.log("Auth code:"+googleUser.authCode+", auth token:"+googleUser.getAuthCode)
+
+        console.log("in handle click sign in, setting local storage user to "+this.user)
+        localStorage.setItem("user", this.user)
       } catch (error) {
         //on fail do something
         console.error(error);
@@ -74,11 +81,16 @@ export default {
         this.$store.commit("setLoggedUser", this.user);
         console.log("committed user to state:"+this.user);
         this.isSignIn = false;
+
+        console.log("in handle click sign in, removing local storage user")
+        localStorage.setItem("user", "")
+
       } catch (error) {
         console.error(error);
       }
     },
     mounted(){
+      console.log("login mounted called")
       let that = this
       let checkGauthLoad = setInterval(function(){
         that.isInit = that.$gAuth.isInit
