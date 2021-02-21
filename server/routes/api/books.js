@@ -4,7 +4,7 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
-// Get Books
+// Get 5 recent Books
 
 router.get('/', async (req, res)=>{ //slash is this route, i.e. /api/books
     const books = await loadBooksCollection();
@@ -20,12 +20,6 @@ router.post('/search/', async (req, res) =>{
     const books = await loadBooksCollection();
     res.send(await books.find(req.body).toArray());
 })
-
-router.get('/:id', async (req, res)=>{ //slash is this route, i.e. /api/books
-    console.log("get with id called, id:"+req.params.id)
-    const books = await loadBooksCollection();
-    res.send(await books.find({_id:new mongodb.ObjectID(req.params.id)}).toArray());
-}); 
 
 //Add Book
 
