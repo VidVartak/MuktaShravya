@@ -4,13 +4,13 @@
     <div id="loginMenu" v-if="loginUser">
       <button @click="handleClickSignOut" >{{$t('logout')}}</button>
       <ul>
-        <li><router-link :to="{name: 'CreateBook'}">{{$t('createBook.Header')}} </router-link></li>
+        <li v-if="createBookAllowed"><router-link :to="{name: 'CreateBook'}">{{$t('createBook.Header')}} </router-link></li>
       </ul>
 
     </div>
     <div id="nonLoginMenu" v-else>
       <button @click="handleClickSignIn" >{{$t('login')}}</button>
-      <button @click="handleClickGetAuth" >Get Auth</button>
+      <!--button @click="handleClickGetAuth" >Get Auth</button-->
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
 * Vue.use(GAuth, {clientId: '4584XXXXXXXX-2gqknkvdjfkdfkvb8uja2k65sldsms7qo9.apps.googleusercontent.com'})
 * 
 */
+import UserService from '../UserService';
 export default {
   name: 'test',
   data: () => {
@@ -35,6 +36,11 @@ export default {
   computed:  {
     loginUser(){
       return this.$store.getters.getUserName;
+    },
+    createBookAllowed(){
+      const filteredArray = this.$store.getters.getUserPrivileges.filter(value => ["admin","createBook"].includes(value));
+      const returnVal=(filteredArray.length>0)?true:false;
+      return returnVal;
     }
   },
   methods: {
@@ -61,11 +67,12 @@ export default {
           return null;
         }
         this.user = googleUser.getBasicProfile().getName();
+        this.userEmail=googleUser.getBasicProfile().getEmail();
+        this.usersFound=await UserService.searchUsers({"email":this.userEmail});
+        this.$store.commit("setDbUser", this.usersFound[0])
         this.$store.commit("setLoggedUser", this.user);
-        this.isSignIn = true;
-        console.log("Auth code:"+googleUser.authCode+", auth token:"+googleUser.getAuthCode)
 
-        console.log("in handle click sign in, setting local storage user to "+this.user)
+        this.isSignIn = true;
         localStorage.setItem("user", this.user)
       } catch (error) {
         //on fail do something
@@ -79,18 +86,13 @@ export default {
         await this.$gAuth.signOut();
         this.user = "";
         this.$store.commit("setLoggedUser", this.user);
-        console.log("committed user to state:"+this.user);
         this.isSignIn = false;
-
-        console.log("in handle click sign in, removing local storage user")
-        localStorage.setItem("user", "")
 
       } catch (error) {
         console.error(error);
       }
     },
     mounted(){
-      console.log("login mounted called")
       let that = this
       let checkGauthLoad = setInterval(function(){
         that.isInit = that.$gAuth.isInit

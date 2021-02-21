@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const books = require('./routes/api/books');
+const users = require('./routes/api/users');
 
 app.use('/api/books', books); //Send any requests to this path to the above javascript.
+app.use('/api/users', users); 
 
 //Handle production 
 if (process.env.NODE_ENV === 'production') {
