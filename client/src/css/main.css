@@ -116,7 +116,7 @@ main {
 }
 
 #wrapper main #leftNav {
-	width: 24%;
+	width: 23%;
 	height: 600px;
 	background-color: rgb(55, 87, 87);
 	float: left;
@@ -125,20 +125,31 @@ main {
 
 #wrapper main #leftNav h2 {
 	color: #e6cfda;
+	padding: 0 10px 0 10px;
 }
 
 #wrapper main #leftNav li {
 	margin-top: 10px;
 	display: block;
-	padding: 0 20px 0 20px;
+	padding: 0 10px 0 10px;
 }
 
 #wrapper main #contentWrapper {
-	width: 75.7%;
+	width: 72%;
 	height: 600;
 	background-color: #A6A6A4;
 	float: left;
-	margin-left: 0.3%;
+	margin-left: 1%;
+}
+
+#wrapper main #contentWrapper a{
+  color:rgb(14, 8, 126);
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+#wrapper main #contentWrapper a:hover{
+  color:blue;
 }
 
 #contentLeft{
@@ -146,7 +157,7 @@ main {
 	height: 600;
 	background-color: #A6A6A4;
 	float: left;
-	margin-left: 0.3%;
+	margin-left: 1%;
 
 }
 
@@ -155,7 +166,7 @@ main {
 	height: 600;
 	background-color: #A6A6A4;
 	float: left;
-	margin-left: 0.3%;
+	margin-left: 1%;
 	margin-top: 50px;
 }
 
@@ -166,32 +177,33 @@ main {
 }
 
 #wrapper #searchResults {
-	width: 100%;
+	width: 90%;
 	height: auto;
 	background-color: #A9A9A6;
 	float: left;
-	margin-top: 3px;
+	margin: 12px 4px 5px 4px;
 }
 
-#wrapper #searchResults li {
+#wrapper #searchResults ul li {
 /*    float: left;*/
-	margin-top: 0px;
 	display: block;
+	padding: 5px 20px 5px 20px;
 }
+
+#wrapper #searchResults .searchResult {
+/*    float: left;*/
+	display: block;
+	margin-top:10px;
+}
+
 
 #wrapper #searchResults .searchResultOdd {
 /*    float: left;*/
-	display: block;
-	padding: 0 2px 0 2px;
-	margin:0px;
 	color:#30300e;
 	background-color: #888888;
 }
 
 #wrapper #searchResults .searchResultEven {
-	display: block;
-	padding: 0 2px 0 2px;
-	margin:0px;
 	color:444444;
 	background-color: #666666;
 }

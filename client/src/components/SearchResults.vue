@@ -3,13 +3,15 @@
         <h2>{{$t('searchResults.Header1')}} {{books.length}} {{$t('searchResults.Header2')}}</h2>
         <ul>
           <li
-          v-for="(book, index) in books"
-          v-bind:item="book"
-          v-bind:index="index"
-          v-bind:key="book._id"
+            v-for="(book, index) in books"
+            v-bind:item="book"
+            v-bind:index="index"
+            v-bind:key="book._id"
+            :class="(index%2==0)?'searchResult searchResultEven':'searchResult searchResultOdd'" 
           >
-            <router-link v-if="language==book.book.Language" :to="{name: 'BookDetail', params: {book:book, id:`searchResult${index}`}}">{{book.book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.book.VernacularHeader.Reader}})</router-link>
-            <router-link v-else :to="{name: 'BookDetail', params: {book:book, id:`searchResult${index}`}}">{{book.book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.book.EnglishHeader.Reader}})</router-link>
+
+            <router-link v-if="language==book.book.Language" :to="{name: 'BookDetail', params: {book:book, id:`searchResult${index}`}}">{{book.book.VernacularHeader.Title}}, {{$t('bookDetail.Author')}}: {{book.book.VernacularHeader.Author}} ({{$t('leftNav.ReadBy')}}: {{book.book.VernacularHeader.Reader}})</router-link>
+            <router-link v-else :to="{name: 'BookDetail', params: {book:book, id:`searchResult${index}`}}">{{book.book.EnglishHeader.Title}}, {{$t('bookDetail.Author')}}: {{book.book.EnglishHeader.Author}} ( {{$t('leftNav.ReadBy')}} {{book.book.EnglishHeader.Reader}})</router-link>
 
           </li>
         </ul>
