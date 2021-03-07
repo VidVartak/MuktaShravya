@@ -26,7 +26,7 @@ const routes = [
     component: JoinUs
   },
   {
-    path:'/bookDetail/:id',
+    path:'/bookDetail/:bookId',
     name: 'BookDetail',
     component: BookDetail,
     props: true

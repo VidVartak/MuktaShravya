@@ -8,8 +8,8 @@
           v-bind:index="index"
           v-bind:key="book._id"
           >
-            <router-link v-if="language==book.book.Language" :to="{name: 'BookDetail', params: {book:book, id:index}}">{{book.book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.book.VernacularHeader.Reader}})</router-link>
-            <router-link v-else :to="{name: 'BookDetail', params: {book:book, id:index}}">{{book.book.EnglishHeader.Title}}( {{$t('leftNav.ReadBy')}} {{book.book.EnglishHeader.Reader}})</router-link>
+            <router-link v-if="language==book.book.Language" :to="{name: 'BookDetail', params: {book:book, bookId:index}}">{{book.book.VernacularHeader.Title}} ({{$t('leftNav.ReadBy')}}: {{book.book.VernacularHeader.Reader}})</router-link>
+            <router-link v-else :to="{name: 'BookDetail', params: {book:book, bookId:index}}">{{book.book.EnglishHeader.Title}} ({{$t('leftNav.ReadBy')}} {{book.book.EnglishHeader.Reader}})</router-link>
 
           </li>
         </ul>
