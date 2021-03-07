@@ -61,36 +61,35 @@ export default {
     },
 
     async handleClickSignIn(){
-      try {
-        const googleUser = await this.$gAuth.signIn();
-        if (!googleUser) {
+      console.log("in handleClickSignIn, user:"+this.user)
+      if (!this.user){
+        try {
+          const googleUser = await this.$gAuth.signIn();
+          if (!googleUser) {
+            return null;
+          }
+          this.user = googleUser.getBasicProfile().getName();
+          this.userEmail=googleUser.getBasicProfile().getEmail();
+          this.usersFound=await UserService.searchUsers({"email":this.userEmail});
+          this.$store.commit("setDbUser", this.usersFound[0])
+          this.$store.commit("setLoggedUser", this.user);
+
+          this.isSignIn = true;
+          localStorage.setItem("user", this.user)
+          localStorage.setItem("userEmail", this.userEmail)
+        } catch (error) {
+          //on fail do something
+          console.error(error);
           return null;
         }
-        this.user = googleUser.getBasicProfile().getName();
-        this.userEmail=googleUser.getBasicProfile().getEmail();
-        this.usersFound=await UserService.searchUsers({"email":this.userEmail});
-        this.$store.commit("setDbUser", this.usersFound[0])
-        this.$store.commit("setLoggedUser", this.user);
-
-        this.isSignIn = true;
-        localStorage.setItem("user", this.user)
-      } catch (error) {
-        //on fail do something
-        console.error(error);
-        return null;
       }
     },
 
     async handleClickSignOut() {
-      try {
-        await this.$gAuth.signOut();
-        this.user = "";
-        this.$store.commit("setLoggedUser", this.user);
-        this.isSignIn = false;
-
-      } catch (error) {
-        console.error(error);
-      }
+      this.$store.commit("setDbUser", "")
+      this.$store.commit("setLoggedUser", "");
+      localStorage.removeItem("user")
+      localStorage.removeItem("userEmail")
     },
     mounted(){
       let that = this
