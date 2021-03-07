@@ -9,7 +9,9 @@
     "bookDetail":{
       "Header": "पुस्तक: ",
       "ReadBy":"वाचक",
-      "Author":"लेखन"
+      "Author":"लेखन",
+      "DownloadZip": "झिप (.zip) फाईल डाउनलोड कीजिये",
+      "OrListenOnline": "या ऑनलाईन सुनिये"
     },
     "createBook":{
       "Header": "नयी किताब बनाइये",

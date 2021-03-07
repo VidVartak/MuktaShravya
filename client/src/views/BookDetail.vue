@@ -13,6 +13,10 @@
           <p>{{book.book.EnglishHeader.DescriptionSpillOver}}</p>
         </div>
         <div style="visibility: visible;">
+          <h2 >{{$t('bookDetail.DownloadZip')}}:
+          <a download type="application/zip" :href="`https://archive.org/compress/${this.book.book.ArchiveName}/formats=VBR%20MP3&file=/${this.book.book.ArchiveName}.zip`"> {{this.book.book.ArchiveName}}.zip </a>
+          </h2>
+          <h2 >{{$t('bookDetail.OrListenOnline')}}:</h2>
           <iframe :src="`https://archive.org/embed/${this.book.book.ArchiveName}?playlist=y`" width="300" height="300" frameborder="0" allowFullScreen></iframe>
         </div>
       </div>

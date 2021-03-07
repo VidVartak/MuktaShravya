@@ -9,7 +9,9 @@
     "bookDetail":{
       "Header": "Book: ",
       "ReadBy":"Read by",
-      "Author":"Author"
+      "Author":"Author",
+      "DownloadZip": "Download as .zip file",
+      "OrListenOnline": "or listen online"
     },
     "createBook":{
       "Header": "Create a new book",
