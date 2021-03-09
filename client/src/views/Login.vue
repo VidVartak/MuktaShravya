@@ -73,6 +73,7 @@ export default {
           this.usersFound=await UserService.searchUsers({"email":this.userEmail});
           this.$store.commit("setDbUser", this.usersFound[0])
           this.$store.commit("setLoggedUser", this.user);
+          console.log("after login, user email:"+this.userEmail)
 
           this.isSignIn = true;
           localStorage.setItem("user", this.user)

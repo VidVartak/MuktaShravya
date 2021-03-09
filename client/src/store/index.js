@@ -21,7 +21,6 @@ export default new Vuex.Store(
         state.userName = loggedInUser;
       },
       setDbUser (state, dbUser){ //This is the data we have in our database, which includes the privileges etc.
-        console.log("store setDbUser called")
         state.dbUser = dbUser;
       },
       setCurrLanguage (state, language){
@@ -30,6 +29,7 @@ export default new Vuex.Store(
     },
     getters: {
       getUserName: state => state.userName,
+      getUserEmail: state => state.dbUser.email,
       getCurrLanguage: state => state.currLanguage,
       getLanguageList: state => state.languageList,
       getUserPrivileges: state => state.dbUser.privileges

@@ -75,6 +75,7 @@ import BookService from '../BookService';
                         ArchiveName: "",
                         Language: "",
                         CreatedAt: new Date(),
+                        CreatedBy: "",
                         EnglishHeader: {
                             Title: "",
                             Reader: "",
@@ -93,17 +94,20 @@ import BookService from '../BookService';
             },
         created() {
             this.Book.Language = this.currLanguage;
+            this.Book.CreatedBy = this.loginEmail;
         },
         computed:  {
             loginUser(){
-              //return localStorage.getItem("user");
-            return this.$store.getters.getUserName;
+                return this.$store.getters.getUserName;
+            },
+            loginEmail(){
+                return this.$store.getters.getUserEmail;
             },
             langs(){
-            return this.$store.getters.getLanguageList;
+                return this.$store.getters.getLanguageList;
             },
             currLanguage(){
-            return this.$store.getters.getCurrLanguage;
+                return this.$store.getters.getCurrLanguage;
             }
         },
         methods:{
