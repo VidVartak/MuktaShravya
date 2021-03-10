@@ -18,6 +18,7 @@
           </v-dialog-->
           <form  @submit.prevent="createBook">
             <input type="text" id="BookArchiveName" v-model="Book.ArchiveName" placeholder="Enter Archive Name">
+            <input type="text" id="BookImageName" v-model="Book.ImageName" placeholder="Enter Image File Name">
             <select v-model="Book.Language">
                 <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang.short" >
                     {{ lang.long }}
@@ -73,6 +74,7 @@ import BookService from '../BookService';
                 return {
                     Book:{
                         ArchiveName: "",
+                        ImageName:"",
                         Language: "",
                         CreatedAt: new Date(),
                         CreatedBy: "",

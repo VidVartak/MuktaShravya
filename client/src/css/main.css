@@ -152,6 +152,13 @@ main {
   color:blue;
 }
 
+#wrapper main #contentWrapper img{
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	width:20%;
+}
+
 #contentLeft{
 	width: 320px;
 	height: 600;

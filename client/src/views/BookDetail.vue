@@ -3,12 +3,14 @@
         <div v-if="language==book.book.Language" >
           <h1> {{book.book.VernacularHeader.Title}}</h1>
           <h2 >{{$t('bookDetail.Author')}}: {{book.book.VernacularHeader.Author}}, {{$t('bookDetail.ReadBy')}}: {{book.book.VernacularHeader.Reader}}</h2>
+          <img :alt="`Image for the book ${book.book.VernacularHeader.Title}`" id='Image1_img' :src="`https://archive.org/download/${this.book.book.ArchiveName}/${this.book.book.ImageName}`" />
           <p>{{book.book.VernacularHeader.Description}}</p>
           <p>{{book.book.VernacularHeader.DescriptionSpillOver}}</p>
         </div>
         <div v-else>
           <h1> {{book.book.EnglishHeader.Title}}</h1>
           <h2 >{{$t('bookDetail.Author')}}: {{book.book.EnglishHeader.Author}}, {{$t('bookDetail.ReadBy')}}: {{book.book.EnglishHeader.Reader}}</h2>
+          <img :alt="`Image for the book ${book.book.VernacularHeader.Title}`" id='Image1_img' :src="`https://archive.org/download/${this.book.book.ArchiveName}/${this.book.book.ImageName}`" />
           <p>{{book.book.EnglishHeader.Description}}</p>
           <p>{{book.book.EnglishHeader.DescriptionSpillOver}}</p>
         </div>
